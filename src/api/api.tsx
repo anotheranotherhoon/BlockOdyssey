@@ -1,4 +1,5 @@
 import { axiosInstance } from "./axiosInstance"
+import type { ProductType } from "../types/interfaces"
 
 export const fetchProduct = async()=> {
   const response = await axiosInstance('/products',{
@@ -21,9 +22,8 @@ export const searchProduct = async(q : string )=> {
   return productData
 }
 
-export const filterProduct = async(data : any, filter :  string, q : string ) => {
-  //TODO : data 타입
-  const result = data.filter((item : any)=> item[filter].includes(q))
+export const filterProduct = async(data : ProductType[], filter :  string, q : string ) => {
+  const result = data.filter((item : ProductType)=> (item[filter] as string).includes(q))
   return result
 }
 
