@@ -10,7 +10,7 @@ interface DropDownProps {
   list : DropDownType[]
 }
 
-const DropDown = ({isDropDownShow, selectedName, selectedStatus, handleDropDown, handleCurrentIndex, list} : DropDownProps) => {
+const DropDown = ({isDropDownShow, selectedName, handleDropDown, handleCurrentIndex, list} : DropDownProps) => {
   return(
     <div>
     <button type='button' onClick={handleDropDown}>

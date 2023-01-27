@@ -5,7 +5,7 @@ interface InitialStateType {
   limit : number;
   filter : string;
   q : string;
-  selectedStatus: string | null;
+  selectedFilterName: string | null;
 }
 
 let initialState : InitialStateType = {
@@ -13,7 +13,7 @@ let initialState : InitialStateType = {
   limit : 10,
   filter : 'all',
   q : 'default',
-  selectedStatus: null
+  selectedFilterName: null
 }
 
 export const querySlice = createSlice({
@@ -25,6 +25,7 @@ export const querySlice = createSlice({
       state.limit = action.payload.limit
       state.filter = action.payload.filter
       state.q = action.payload.q
+      state.selectedFilterName = action.payload.selectedFilterName
     }
   }
 })

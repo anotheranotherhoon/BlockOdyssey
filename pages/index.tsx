@@ -15,16 +15,16 @@ import { changeFilter } from "../src/redux/queryReducer"
 const Home = () => {
   const state = useSelector((state: RootState) => state.queryReducer)
   const dispatch = useDispatch()
-  const { router, filter, q, limit, page, selectedFilterName, } = RouterInfo()
+  const { filter, q, limit, page, selectedFilterName, } = RouterInfo()
   useEffect(() => {
-    console.log(page, limit, limit, filter, q)
     dispatch(changeFilter({
       page,
       limit,
       filter,
-      q
+      q,
+      selectedFilterName
     }))
-  }, [filter, q, limit, page, dispatch])
+  }, [filter, q, limit, page, dispatch, selectedFilterName])
   const { data, isLoading, isError } = useQuery(
     ['product', filter, q], () => fetchSearchProduct(filter, q)
   )
@@ -33,7 +33,7 @@ const Home = () => {
     selectedName: filterSelectedName, 
     selectedStatus: filterSelectedStatus, 
     handleDropDown: filterHandleDropDown, 
-    handleCurrentIndex: filterHandleCurrentIndex } = useDropDown(filter, selectedFilterName)
+    handleCurrentIndex: filterHandleCurrentIndex } = useDropDown(selectedFilterName, filter)
   const { 
     isDropDownShow: isLimitDropDownShow, 
     selectedName: limitSelectedName, 
