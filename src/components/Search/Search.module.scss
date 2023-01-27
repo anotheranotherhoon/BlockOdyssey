@@ -1,0 +1,19 @@
+.searchBox {
+  display:flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 1%;
+  border-radius: 1.5rem;
+  font-size: 1.5rem;
+  section{
+    display: flex;
+  }
+}
+
+.bold{
+  font-weight: bold;
+}
+
+#split {
+  border-bottom: 0.1rem solid #EBEBEA;
+}
