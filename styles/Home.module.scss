@@ -1,5 +1,11 @@
 .layout {
   display: flex;
+  flex-direction: column;
+  background-color: #F3F3F3;
+  height: 100vh;
+  .wrapper{
+    margin: 1%;
+  }
 }
 
 @media (max-width: 600px) {
