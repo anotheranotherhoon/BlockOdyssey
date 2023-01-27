@@ -4,11 +4,7 @@ import { fetchSearchProduct } from '../../api/api'
 import { convertDollar } from '../../utils/convertFn'
 import { RouterInfo } from '../../utils/RouterInfo'
 import styles from './ProductList.module.scss'
-
-
-interface ProductProps {
-  product : any
-}
+import type { ProductProps, ProductType } from '../../types/interfaces'
 
 const ProductList = ({product} : ProductProps) => {
   const {limit, page} = RouterInfo()
@@ -27,7 +23,7 @@ const ProductList = ({product} : ProductProps) => {
           <div className={styles.small}>재고</div>
         </section>
         {
-          product.slice(offset, offset+limit).map((product: any) => (
+          product.slice(offset, offset+limit).map((product: ProductType) => (
             <section key={product.id}>
               <div className={styles.small}>{product.id}</div>
               <div>{product.title}</div>

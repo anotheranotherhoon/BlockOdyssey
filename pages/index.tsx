@@ -6,21 +6,50 @@ import { fetchSearchProduct } from "../src/api/api"
 import styles from '../styles/Home.module.scss'
 import Pagination from "../src/components/Pagination/Pagination"
 import { RouterInfo } from "../src/utils/RouterInfo"
+import { useDropDown } from "../src/hook/useDropDown"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../src/redux/store"
+import { useEffect } from "react"
+import { changeFilter } from "../src/redux/queryReducer"
 
 const Home = () => {
-  const {filter, q} = RouterInfo()
+  const state = useSelector((state: RootState) => state.queryReducer)
+  const dispatch = useDispatch()
+  const { router, filter, q, limit, page, selectedFilterName, } = RouterInfo()
+  useEffect(() => {
+    console.log(page, limit, limit, filter, q)
+    dispatch(changeFilter({
+      page,
+      limit,
+      filter,
+      q
+    }))
+  }, [filter, q, limit, page, dispatch])
   const { data, isLoading, isError } = useQuery(
     ['product', filter, q], () => fetchSearchProduct(filter, q)
   )
+  const { 
+    isDropDownShow: isFilterDropDownShow, 
+    selectedName: filterSelectedName, 
+    selectedStatus: filterSelectedStatus, 
+    handleDropDown: filterHandleDropDown, 
+    handleCurrentIndex: filterHandleCurrentIndex } = useDropDown(filter, selectedFilterName)
+  const { 
+    isDropDownShow: isLimitDropDownShow, 
+    selectedName: limitSelectedName, 
+    selectedStatus: limitSelectedStatus, 
+    handleDropDown: limitHandleDropDown, 
+    handleCurrentIndex: limitHandleCurrentIndex } = useDropDown(String(limit), String(limit))
   if (isLoading === true) {
     return <div>hello</div>
   }
+
   return (
     <div className={styles.layout}>
       <div className={styles.wrapper}>
-        <Search />
+        <Search isDropDownShow={isFilterDropDownShow} selectedName={filterSelectedName} selectedStatus={filterSelectedStatus} handleDropDown={filterHandleDropDown} handleCurrentIndex={filterHandleCurrentIndex} limitSelectedStatus={limitSelectedStatus} />
         <ProductList product={data} />
-        <Pagination total={data.length}/>
+        <Pagination total={data.length} isDropDownShow={isLimitDropDownShow} selectedName={limitSelectedName} selectedStatus={limitSelectedStatus} handleDropDown={limitHandleDropDown} handleCurrentIndex={limitHandleCurrentIndex} />
       </div>
     </div>
   )
@@ -29,8 +58,8 @@ const Home = () => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   let filter = 'all'
   let q = 'default'
-  context.query.filter ? filter = context.query.filter as string : filter 
-  context.query.q ? q = context.query.q as string : q 
+  context.query.filter ? filter = context.query.filter as string : filter
+  context.query.q ? q = context.query.q as string : q
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery(['product', filter, q], () => fetchSearchProduct(filter, q))
   return {
