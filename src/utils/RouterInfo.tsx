@@ -8,7 +8,17 @@ export const RouterInfo = () => {
   let q = 'default'
   router.query.filter ? filter = router.query.filter as string : filter
   router.query.q ? q = router.query.q as string : q
+  let selectedFilterName = null
+  if(filter==='all'){
+    selectedFilterName='전체'
+  }else if(filter==='title'){
+    selectedFilterName = '상품명'
+  }else if(filter==='brand'){
+    selectedFilterName = '브랜드'
+  }else if(filter==='description'){
+    selectedFilterName='상품내용'
+  }
   return {
-    router, filter, q, limit, page
+    router, filter, q, limit, page, selectedFilterName
   }
 }
