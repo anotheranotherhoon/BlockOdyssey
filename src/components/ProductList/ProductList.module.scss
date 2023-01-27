@@ -3,4 +3,17 @@
   background-color: #ffffff;
   padding: 1%;
   border-radius: 1.5rem;
+  flex-direction: column;
+  section{
+    display: flex;
+    flex-direction: row;
+    div{
+      text-align: center;
+      padding: 1%;
+      width: 100%;
+      &.small{
+        width:10%;
+      }
+    }
+  }
 }
