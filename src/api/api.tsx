@@ -6,10 +6,8 @@ export const fetchProduct = async()=> {
       limit :100,
     }
   })
-  const productData = response.data
-  return {
-    productData
-  }
+  const productData = response.data.products
+  return productData
 }
 
 export const searchProduct = async(q : string )=> {
@@ -30,17 +28,17 @@ export const filterProduct = async(data : any, filter :  string, q : string ) =>
 }
 
 export const fetchSearchProduct = async (filter : string , q : string) => {
-  if(filter==='default' && q==='default'){
+  if(filter==='all' && q==='default'){
     const result = await fetchProduct()
     return result
-  }else if(filter==='default' && q!=='default'){
+  }else if(filter==='all' && q!=='default'){
     const result = await searchProduct(q)
     return result
-  }else if(filter !=='default' && q !== 'default'){
+  }else if(filter !=='all' && q !== 'default'){
     const data = await searchProduct(q)
     const result = filterProduct(data, filter, q)
     return result
-  }else if(filter !=='default' && q === 'default'){
+  }else if(filter !=='all' && q === 'default'){
     const result = await fetchProduct()
     return result
   }
