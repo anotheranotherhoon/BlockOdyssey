@@ -1,16 +1,26 @@
 import ProductList from "../src/components/ProductList/ProductList"
 import Search from "../src/components/Search/Search"
 import { GetServerSideProps } from "next"
-import { dehydrate, QueryClient } from "@tanstack/react-query"
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query"
 import { fetchSearchProduct } from "../src/api/api"
 import styles from '../styles/Home.module.scss'
+import Pagination from "../src/components/Pagination/Pagination"
+import { RouterInfo } from "../src/utils/RouterInfo"
 
 const Home = () => {
+  const {filter, q} = RouterInfo()
+  const { data, isLoading, isError } = useQuery(
+    ['product', filter, q], () => fetchSearchProduct(filter, q)
+  )
+  if (isLoading === true) {
+    return <div>hello</div>
+  }
   return (
     <div className={styles.layout}>
       <div className={styles.wrapper}>
         <Search />
-        <ProductList />
+        <ProductList product={data} />
+        <Pagination total={data.length}/>
       </div>
     </div>
   )

@@ -1,23 +1,21 @@
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { fetchSearchProduct } from '../../api/api'
-import { INDEX } from '../../utils/constantValue'
-import { convertDollar } from '../../utils/ConvertFn'
+import { convertDollar } from '../../utils/convertFn'
 import { RouterInfo } from '../../utils/RouterInfo'
 import styles from './ProductList.module.scss'
 
-const ProductList = () => {
-  const { filter, q } = RouterInfo()
-  const { data, isLoading, isError } = useQuery(
-    ['product', filter, q], () => fetchSearchProduct(filter, q)
-  )
-  if (isLoading === true) {
-    return <div>hello</div>
-  }
-  console.log(data)
+
+interface ProductProps {
+  product : any
+}
+
+const ProductList = ({product} : ProductProps) => {
+  const {limit, page} = RouterInfo()
+  const offset = (page - 1) * limit
   return (
     <React.Fragment>
-      <div>검색된 데이터 : {data.length}</div>
+      <div>검색된 데이터 : {product.length}</div>
       <div className={styles.productListBox}>
         <section>
           <div className={styles.small}>상품번호</div>
@@ -29,7 +27,7 @@ const ProductList = () => {
           <div className={styles.small}>재고</div>
         </section>
         {
-          data.map((product: any) => (
+          product.slice(offset, offset+limit).map((product: any) => (
             <section key={product.id}>
               <div className={styles.small}>{product.id}</div>
               <div>{product.title}</div>
@@ -41,7 +39,6 @@ const ProductList = () => {
               <div className={styles.small}>{product.rating}</div>
               <div className={styles.small}>{product.stock}</div>
             </section>
-
           ))}
       </div>
     </React.Fragment>
