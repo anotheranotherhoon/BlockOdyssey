@@ -1,5 +1,4 @@
 import { RouterInfo } from "../utils/RouterInfo";
-import type { PaginationTotal } from "../components/Pagination/Pagination";
 
 export const usePagination = (total : number) => {
   const {router, filter, q,  limit, page} = RouterInfo()
@@ -19,7 +18,6 @@ export const usePagination = (total : number) => {
   const handleClickNumber= (targetPage : number) => {
     router.push(`/?filter=${filter}&q=${q}&page=${targetPage}&limit=${limit}`)
   }
-  console.log(total,numPages)
   return{
     numPages,
     handlePreviousPage,
