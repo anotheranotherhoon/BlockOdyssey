@@ -18,12 +18,14 @@ export const searchProduct = async(q : string )=> {
       q
     }
   })
+  console.log(response)
   const productData = response.data.products
   return productData
 }
 
 export const filterProduct = async(data : ProductType[], filter :  string, q : string ) => {
-  const result = data.filter((item : ProductType)=> (item[filter] as string).includes(q))
+  const keyword = q.toLocaleLowerCase()
+  const result = data.filter((item : ProductType)=> (item[filter] as string).toLowerCase().includes(keyword))
   return result
 }
 
@@ -35,7 +37,7 @@ export const fetchSearchProduct = async (filter : string , q : string) => {
     const result = await searchProduct(q)
     return result
   }else if(filter !=='all' && q !== 'default'){
-    const data = await searchProduct(q)
+    const data = await fetchProduct()
     const result = filterProduct(data, filter, q)
     return result
   }else if(filter !=='all' && q === 'default'){
