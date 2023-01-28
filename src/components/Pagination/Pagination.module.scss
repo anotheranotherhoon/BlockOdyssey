@@ -1,0 +1,27 @@
+.pagination_wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin: 16px;
+  button{
+    background-color: #ffffff;
+    border: 0.1rem solid #d9d9d9;
+    &:hover{
+      background-color: #d9d9d9;
+      cursor: pointer;
+      transform: translateY(-2px);
+    }
+    &[disabled] {
+      cursor: revert;
+      transform: revert;
+  }
+  &.current{
+    background: #d9d9d9;
+    font-weight: bold;
+    cursor: revert;
+    transform: revert;
+  }
+  }
+}
+

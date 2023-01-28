@@ -1,28 +1,32 @@
-import React from "react"
 import { usePagination } from "../../hook/usePagination"
-import DropDown from "../DropDown/DropDown"
-import type { DropDownType } from "../../types/interfaces"
-import { LIMIT } from "../../utils/constantValue"
+import { RouterInfo } from "../../utils/RouterInfo"
+import styles from './Pagination.module.scss'
+
+
 export interface PaginationTotal {
   total: number
 }
 
 const Pagination = ({ total}: PaginationTotal) => {
   const { numPages, handlePreviousPage, handleNextPage, handleClickNumber } = usePagination(total)
+  const {page} = RouterInfo()
+  
   return (
-    <React.Fragment>
-      <section>
-        <button onClick={handlePreviousPage}>&lt;</button>
+      <section className={styles.pagination_wrapper}>
+        <button onClick={handlePreviousPage} disabled={page === 1}>&lt;</button>
         {numPages && Array(numPages)
           .fill(undefined).map((_, i) => (
-            <button key={i + 1} onClick={() => handleClickNumber(i + 1)}>
+            <button 
+            key={i + 1} 
+            onClick={() => handleClickNumber(i + 1)}
+            className={page=== i+1 ? styles.current : 'null'}
+            >
               {i + 1}
             </button>
           ))
         }
-        <button onClick={handleNextPage}>&gt;</button>
+        <button onClick={handleNextPage} disabled={page === numPages}>&gt;</button>
       </section>
-    </React.Fragment>
 
   )
 }
