@@ -55,6 +55,22 @@
   <br>
 </p>
 
+## Other Tasks
+-  모바일 환경에서도 화면 비율을 유지하도록  반응형으로 디자인하였습니다. 
+<p align="center">
+  <br>
+  <img src="./images/png/responsiveMobile.png">
+  <br>
+</p>
+
+- Next.js의 SSR을 사용하였습니다. 
+<p align="center">
+  <br>
+  <img src="./images/png/ssr.png">
+  <br>
+</p>
+
+
 ## **🛠 Dev Tools**
 
 ![badge](https://img.shields.io/badge/React-61dafb?logo=React&logoColor=white&style=flat-square)
