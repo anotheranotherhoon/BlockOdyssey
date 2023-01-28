@@ -9,6 +9,7 @@ import { RouterInfo } from "../src/utils/RouterInfo"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { changeFilter } from "../src/redux/queryReducer"
+import Head from "next/head"
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -22,19 +23,30 @@ const Home = () => {
       selectedFilterName
     }))
   }, [filter, q, limit, page, dispatch, selectedFilterName])
-  const { data, isLoading, isError } = useQuery(
+  const { data, isLoading } = useQuery(
     ['product', filter, q], () => fetchSearchProduct(filter, q)
   )
-  if (isLoading === true) {
-    return <div>hello</div>
+  if (isLoading) {
+    return (
+      <div className={styles.layout}>
+        <div className={styles.wrapper}>
+        <Head>
+        <title>이창훈_FE_원티드</title>
+      </Head>
+          로딩 중 입니다...
+        </div>
+      </div>
+    )
   }
-
   return (
     <div className={styles.layout}>
       <div className={styles.wrapper}>
+      <Head>
+        <title>이창훈_FE_원티드</title>
+      </Head>
         <Search />
         <ProductList product={data} />
-        <Pagination total={data.length}/>
+        <Pagination total={data.length} />
       </div>
     </div>
   )
