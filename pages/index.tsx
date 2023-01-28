@@ -13,7 +13,6 @@ import { useEffect } from "react"
 import { changeFilter } from "../src/redux/queryReducer"
 
 const Home = () => {
-  const state = useSelector((state: RootState) => state.queryReducer)
   const dispatch = useDispatch()
   const { filter, q, limit, page, selectedFilterName, } = RouterInfo()
   useEffect(() => {
@@ -28,18 +27,6 @@ const Home = () => {
   const { data, isLoading, isError } = useQuery(
     ['product', filter, q], () => fetchSearchProduct(filter, q)
   )
-  const { 
-    isDropDownShow: isFilterDropDownShow, 
-    selectedName: filterSelectedName, 
-    selectedStatus: filterSelectedStatus, 
-    handleDropDown: filterHandleDropDown, 
-    handleCurrentIndex: filterHandleCurrentIndex } = useDropDown(selectedFilterName, filter)
-  const { 
-    isDropDownShow: isLimitDropDownShow, 
-    selectedName: limitSelectedName, 
-    selectedStatus: limitSelectedStatus, 
-    handleDropDown: limitHandleDropDown, 
-    handleCurrentIndex: limitHandleCurrentIndex } = useDropDown(String(limit), String(limit))
   if (isLoading === true) {
     return <div>hello</div>
   }
@@ -47,9 +34,9 @@ const Home = () => {
   return (
     <div className={styles.layout}>
       <div className={styles.wrapper}>
-        <Search isDropDownShow={isFilterDropDownShow} selectedName={filterSelectedName} selectedStatus={filterSelectedStatus} handleDropDown={filterHandleDropDown} handleCurrentIndex={filterHandleCurrentIndex} limitSelectedStatus={limitSelectedStatus} />
+        <Search />
         <ProductList product={data} />
-        <Pagination total={data.length} isDropDownShow={isLimitDropDownShow} selectedName={limitSelectedName} selectedStatus={limitSelectedStatus} handleDropDown={limitHandleDropDown} handleCurrentIndex={limitHandleCurrentIndex} />
+        <Pagination total={data.length}/>
       </div>
     </div>
   )

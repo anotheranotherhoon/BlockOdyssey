@@ -1,7 +1,11 @@
 import { RouterInfo } from "../utils/RouterInfo";
+import { useSelector } from "react-redux"
+import { RootState } from "../redux/store";
 
 export const usePagination = (total : number) => {
-  const {router, filter, q,  limit, page} = RouterInfo()
+  const {router} = RouterInfo()
+  const state = useSelector((state : RootState)=>state.queryReducer)
+  const {page, limit, filter, q }=state
   const numPages = Math.ceil(total / limit)
   const handlePreviousPage = () => {
     if(page===1){

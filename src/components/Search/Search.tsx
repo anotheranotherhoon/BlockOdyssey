@@ -4,33 +4,37 @@ import { useInput } from '../../hook/useInput'
 import { RouterInfo } from '../../utils/RouterInfo'
 import DropDown from '../DropDown/DropDown'
 import styles from './Search.module.scss'
-import { FILTER } from '../../utils/constantValue'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
+import { FILTER, LIMIT } from '../../utils/constantValue'
 
-export interface SearchPropsType {
-  isDropDownShow : boolean;
-  selectedName : string | null;
-  selectedStatus : string |null;
-  handleDropDown : ()=>void;
-  handleCurrentIndex: (e :React.MouseEvent<HTMLButtonElement, MouseEvent>)=>void;
-  limitSelectedStatus : string | null;
-}
-
-const Search = ({isDropDownShow, selectedName, selectedStatus, handleDropDown, handleCurrentIndex, limitSelectedStatus} : SearchPropsType) => {
+const Search = () => {
   const {value, handleInputChange} = useInput()
-  const {router} = RouterInfo()
+  const {router, filter, q, limit, page, selectedFilterName} = RouterInfo()
+  const { 
+    isDropDownShow: isFilterDropDownShow, 
+    selectedName: filterSelectedName, 
+    selectedStatus: filterSelectedStatus, 
+    handleDropDown: filterHandleDropDown, 
+    handleCurrentIndex: filterHandleCurrentIndex } = useDropDown(selectedFilterName, filter)
+  const { 
+    isDropDownShow: isLimitDropDownShow, 
+    selectedName: limitSelectedName, 
+    selectedStatus: limitSelectedStatus, 
+    handleDropDown: limitHandleDropDown, 
+    handleCurrentIndex: limitHandleCurrentIndex } = useDropDown(String(limit), String(limit))
+
   const handleSearch = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    router.push(`/?filter=${selectedStatus}&q=${value}&page=${1}&limit=${limitSelectedStatus}`)
+    router.push(`/?filter=${filterSelectedStatus}&q=${value}&page=${1}&limit=${limitSelectedStatus}`)
   }
+
   return (
     <div className={styles.searchBox}>
       <div className={styles.bold} id={styles.split}>상품 검색</div>
       <section>
         <div className={styles.bold}>검색</div>
         <form onSubmit={handleSearch}>
-          <DropDown isDropDownShow={isDropDownShow} selectedName={selectedName} selectedStatus={selectedStatus} handleDropDown={handleDropDown} handleCurrentIndex={handleCurrentIndex} list={FILTER}/>
+          <DropDown isDropDownShow={isFilterDropDownShow} selectedName={filterSelectedName} selectedStatus={filterSelectedStatus} handleDropDown={filterHandleDropDown} handleCurrentIndex={filterHandleCurrentIndex} list={FILTER}/>
+          <DropDown isDropDownShow={isLimitDropDownShow} selectedName={limitSelectedName} selectedStatus={limitSelectedStatus} handleDropDown={limitHandleDropDown} handleCurrentIndex={limitHandleCurrentIndex} list={LIMIT}/>
           <label htmlFor='q'/><input id='q' onChange={(e)=>handleInputChange(e)} value={value}/>
           <button>조회</button>
         </form>
