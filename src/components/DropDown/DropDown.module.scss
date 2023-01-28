@@ -1,0 +1,21 @@
+.wrapper{
+  position: relative;
+  margin:0 3px;
+  button{
+    background-color: #ffffff;
+    border: 0.1rem solid #d9d9d9;
+    line-height: 16px;
+    width:8rem;
+  }
+}
+
+.styleul{
+  position: absolute;
+  top:5px;
+  right:0.5px;
+  li{
+    width: 100%;
+    list-style: none;
+  }
+}
+
