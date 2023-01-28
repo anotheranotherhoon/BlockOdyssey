@@ -17,6 +17,11 @@
       width: 100%;
       &.small{
         width:10%;
+        min-width: 30px;
+      }
+      &.price{
+        width:10%;
+        min-width: 40px;
       }
     }
   }

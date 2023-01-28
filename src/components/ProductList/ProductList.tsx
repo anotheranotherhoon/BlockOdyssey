@@ -18,7 +18,7 @@ const ProductList = ({product} : ProductProps) => {
           <div>상품명</div>
           <div>브랜드</div>
           <div>상품내용</div>
-          <div className={styles.small}>가격</div>
+          <div className={styles.price}>가격</div>
           <div className={styles.small}>평점</div>
           <div className={styles.small}>재고</div>
         </section>
@@ -31,7 +31,7 @@ const ProductList = ({product} : ProductProps) => {
               <div>{
                 product.description.length>40 ?`${product.description.slice(0,41)}...` : product.description
                 }</div>
-              <div className={styles.small}>{convertDollar(product.price)}</div>
+              <div className={styles.price}>{convertDollar(product.price)}</div>
               <div className={styles.small}>{product.rating}</div>
               <div className={styles.small}>{product.stock}</div>
             </section>
