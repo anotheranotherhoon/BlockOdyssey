@@ -10,10 +10,10 @@ const ProductList = ({product} : ProductProps) => {
   const {limit, page} = RouterInfo()
   const offset = (page - 1) * limit
   return (
-    <React.Fragment>
-      <div>검색된 데이터 : {product.length}</div>
+    <div className={styles.productWrapper}>
+      <div className={styles.length}>검색된 데이터 : {product.length}</div>
       <div className={styles.productListBox}>
-        <section>
+        <section className={styles.bold}>
           <div className={styles.small}>상품번호</div>
           <div>상품명</div>
           <div>브랜드</div>
@@ -37,7 +37,7 @@ const ProductList = ({product} : ProductProps) => {
             </section>
           ))}
       </div>
-    </React.Fragment>
+    </div>
 
   )
 }
