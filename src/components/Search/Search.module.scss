@@ -5,15 +5,33 @@
   padding: 1%;
   border-radius: 1.5rem;
   font-size: 1.5rem;
+  gap: 10px;
   section{
     display: flex;
+    flex-direction: row;
+    width: 50%;
+  }
+  form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    button{
+      background-color: #ffffff;
+      border: 0.1rem solid #d9d9d9;
+    }
   }
 }
 
 .bold{
   font-weight: bold;
+  width: 50%;
 }
 
 #split {
   border-bottom: 0.1rem solid #EBEBEA;
+}
+
+.flex_container{
+  display: flex;
+  flex-direction: row;
 }
