@@ -18,7 +18,6 @@ export const searchProduct = async(q : string )=> {
       q
     }
   })
-  console.log(response)
   const productData = response.data.products
   return productData
 }
