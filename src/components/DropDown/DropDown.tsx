@@ -1,15 +1,6 @@
 import React from "react";
 import styles from './DropDown.module.scss'
-import type { DropDownType } from '../../types/interfaces'
-
-interface DropDownProps {
-  isDropDownShow: boolean;
-  selectedName: string | null;
-  selectedStatus: string | null;
-  handleDropDown: () => void;
-  handleCurrentIndex: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  list: DropDownType[]
-}
+import type { DropDownProps } from '../../types/interfaces'
 
 const DropDown = ({ isDropDownShow, selectedName, handleDropDown, handleCurrentIndex, list }: DropDownProps) => {
   return (

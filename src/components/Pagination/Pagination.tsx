@@ -1,13 +1,9 @@
 import { usePagination } from "../../hook/usePagination"
 import { RouterInfo } from "../../utils/RouterInfo"
 import styles from './Pagination.module.scss'
+import type { PaginationProps } from '../../types/interfaces'
 
-
-export interface PaginationTotal {
-  total: number
-}
-
-const Pagination = ({ total}: PaginationTotal) => {
+const Pagination = ({ total}: PaginationProps) => {
   const { numPages, handlePreviousPage, handleNextPage, handleClickNumber } = usePagination(total)
   const {page} = RouterInfo()
   

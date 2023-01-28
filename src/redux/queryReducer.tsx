@@ -1,12 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-interface InitialStateType {
-  page : number;
-  limit : number;
-  filter : string;
-  q : string;
-  selectedFilterName: string | null;
-}
+import type {InitialStateType} from '../types/interfaces'
 
 let initialState : InitialStateType = {
   page : 1,
