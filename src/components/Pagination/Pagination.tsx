@@ -1,7 +1,7 @@
 import { usePagination } from "../../hook/usePagination"
 import { RouterInfo } from "../../utils/RouterInfo"
-import styles from './Pagination.module.scss'
-import type { PaginationProps } from '../../types/interfaces'
+import styles from "./Pagination.module.scss"
+import type { PaginationProps } from "../../types/interfaces"
 
 const Pagination = ({ total}: PaginationProps) => {
   const { numPages, handlePreviousPage, handleNextPage, handleClickNumber } = usePagination(total)
@@ -15,7 +15,7 @@ const Pagination = ({ total}: PaginationProps) => {
             <button 
             key={i + 1} 
             onClick={() => handleClickNumber(i + 1)}
-            className={page=== i+1 ? styles.current : 'null'}
+            className={page=== i+1 ? styles.current : "null"}
             >
               {i + 1}
             </button>

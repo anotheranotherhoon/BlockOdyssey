@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeFilter } from "../redux/queryReducer";
 import { RootState } from "../redux/store";
-import {UseDropDownParam} from '../types/interfaces'
+import {UseDropDownParam} from "../types/interfaces"
 
 export const useDropDown: UseDropDownParam  = (name, status, isLimit) => {
   const dispatch = useDispatch()

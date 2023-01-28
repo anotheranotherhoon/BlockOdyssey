@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type {InitialStateType} from '../types/interfaces'
+import type {InitialStateType} from "../types/interfaces"
 
 let initialState : InitialStateType = {
   page : 1,
   limit : 10,
-  filter : 'all',
-  q : 'default',
+  filter : "all",
+  q : "default",
   selectedFilterName: null
 }
 
 export const querySlice = createSlice({
-  name : 'query',
+  name : "query",
   initialState,
   reducers : {
     changeFilter : (state, action) => {

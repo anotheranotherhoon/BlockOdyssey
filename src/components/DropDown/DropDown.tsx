@@ -1,11 +1,11 @@
 import React from "react";
-import styles from './DropDown.module.scss'
-import type { DropDownProps } from '../../types/interfaces'
+import styles from "./DropDown.module.scss"
+import type { DropDownProps } from "../../types/interfaces"
 
 const DropDown = ({ isDropDownShow, selectedName, handleDropDown, handleCurrentIndex, list }: DropDownProps) => {
   return (
     <div className={styles.wrapper}>
-      <button type='button' className={styles.dropdown} onClick={handleDropDown}>
+      <button type="button" className={styles.dropdown} onClick={handleDropDown}>
         <span>{selectedName}</span>
       </button>
       {isDropDownShow && (

@@ -1,10 +1,9 @@
-import axios from 'axios';
-import { AxiosRequestConfig } from 'axios';
+import axios from "axios";
 
 export const axiosInstance = axios.create({
   timeout: 5000,
-  baseURL : 'https://dummyjson.com',
+  baseURL : "https://dummyjson.com",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   }
 });

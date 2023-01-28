@@ -1,10 +1,10 @@
-import React from 'react'
-import { useDropDown } from '../../hook/useDropDown'
-import { useInput } from '../../hook/useInput'
-import { RouterInfo } from '../../utils/RouterInfo'
-import DropDown from '../DropDown/DropDown'
-import styles from './Search.module.scss'
-import { FILTER, LIMIT } from '../../utils/constantValue'
+import React from "react"
+import { useDropDown } from "../../hook/useDropDown"
+import { useInput } from "../../hook/useInput"
+import { RouterInfo } from "../../utils/RouterInfo"
+import DropDown from "../DropDown/DropDown"
+import styles from "./Search.module.scss"
+import { FILTER, LIMIT } from "../../utils/constantValue"
 
 const Search = () => {
   const { value, handleInputChange } = useInput()
@@ -37,7 +37,7 @@ const Search = () => {
           <DropDown isDropDownShow={isLimitDropDownShow} selectedName={limitSelectedName} selectedStatus={limitSelectedStatus} handleDropDown={limitHandleDropDown} handleCurrentIndex={limitHandleCurrentIndex} list={LIMIT} />
         </div>
         <form onSubmit={handleSearch}>
-          <label htmlFor='q' /><input id='q' onChange={(e) => handleInputChange(e)} value={value} />
+          <label htmlFor="q" /><input id="q" onChange={(e) => handleInputChange(e)} value={value} />
           <button>조회</button>
         </form>
       </section>
