@@ -18,7 +18,6 @@
 </p>
 
 - The column is in order of [상품번호, 상품명, 브랜드, 상품내용, 가격, 평점, 재고].
-
 <p align="center">
   <br>
   <img src="./images/png/column.png">
@@ -26,6 +25,12 @@
 </p>
 
 - Search conditions are the following : [전체, 상품명, 브랜드, 상품내용].
+<p align="center">
+  <br>
+  <img src="./images/gif/searchCondition.gif">
+  <br>
+</p>
+
 - Display the total amount of data at the top of the list.
 <p align="center">
   <br>
