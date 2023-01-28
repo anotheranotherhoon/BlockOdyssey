@@ -6,9 +6,7 @@ import { fetchSearchProduct } from "../src/api/api"
 import styles from '../styles/Home.module.scss'
 import Pagination from "../src/components/Pagination/Pagination"
 import { RouterInfo } from "../src/utils/RouterInfo"
-import { useDropDown } from "../src/hook/useDropDown"
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "../src/redux/store"
+import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { changeFilter } from "../src/redux/queryReducer"
 
