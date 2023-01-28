@@ -1,6 +1,4 @@
-import { useQuery } from "@tanstack/react-query"
 import React from "react"
-import { fetchSearchProduct } from "../../api/api"
 import { convertDollar } from "../../utils/convertFn"
 import { RouterInfo } from "../../utils/RouterInfo"
 import styles from "./ProductList.module.scss"

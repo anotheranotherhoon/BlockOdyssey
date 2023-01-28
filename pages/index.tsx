@@ -24,7 +24,9 @@ const Home = () => {
     }))
   }, [filter, q, limit, page, dispatch, selectedFilterName])
   const { data, isLoading } = useQuery(
-    ["product", filter, q], () => fetchSearchProduct(filter, q)
+    ["product", filter, q], () => fetchSearchProduct(filter, q),{
+      staleTime : Infinity
+    }
   )
   if (isLoading) {
     return (
@@ -58,7 +60,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   context.query.filter ? filter = context.query.filter as string : filter
   context.query.q ? q = context.query.q as string : q
   const queryClient = new QueryClient()
-  await queryClient.prefetchQuery(["product", filter, q], () => fetchSearchProduct(filter, q))
+  await queryClient.prefetchQuery(["product", filter, q], () => fetchSearchProduct(filter, q),{
+    staleTime: Infinity
+  })
   return {
     props: {
       dehydratedState: dehydrate(queryClient)
