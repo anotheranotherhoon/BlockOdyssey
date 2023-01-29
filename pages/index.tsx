@@ -9,7 +9,6 @@ import { RouterInfo } from "../src/utils/RouterInfo"
 import { useDispatch } from "react-redux"
 import React, {useEffect } from "react"
 import { changeFilter } from "../src/redux/queryReducer"
-import Head from "next/head"
 import Loading from "../src/components/Suspense/Loading"
 import { SSRSuspense } from "../src/components/Suspense/SSRSuspense"
 
@@ -34,9 +33,6 @@ const Home = () => {
     <SSRSuspense fallback={<Loading/>}>
       <div className={styles.layout}>
         <div className={styles.wrapper}>
-          <Head>
-            <title>이창훈_FE_원티드</title>
-          </Head>
           <Search />
           <ProductList product={data} />
           <Pagination total={data.length} />
