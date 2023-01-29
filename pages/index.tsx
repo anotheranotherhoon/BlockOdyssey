@@ -25,7 +25,7 @@ const Home = () => {
       selectedFilterName
     }))
   }, [filter, q, limit, page, dispatch, selectedFilterName])
-  const { data, isLoading } = useQuery(
+  const { data } = useQuery(
     ["product", filter, q], () => fetchSearchProduct(filter, q), {
     staleTime: Infinity
   }
