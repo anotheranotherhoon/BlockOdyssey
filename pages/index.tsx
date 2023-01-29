@@ -7,9 +7,11 @@ import styles from "../styles/Home.module.scss"
 import Pagination from "../src/components/Pagination/Pagination"
 import { RouterInfo } from "../src/utils/RouterInfo"
 import { useDispatch } from "react-redux"
-import { useEffect } from "react"
+import React, {useEffect } from "react"
 import { changeFilter } from "../src/redux/queryReducer"
 import Head from "next/head"
+import Loading from "../src/components/Suspense/Loading"
+import { SSRSuspense } from "../src/components/Suspense/SSRSuspense"
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -24,33 +26,24 @@ const Home = () => {
     }))
   }, [filter, q, limit, page, dispatch, selectedFilterName])
   const { data, isLoading } = useQuery(
-    ["product", filter, q], () => fetchSearchProduct(filter, q),{
-      staleTime : Infinity
-    }
+    ["product", filter, q], () => fetchSearchProduct(filter, q), {
+    staleTime: Infinity
+  }
   )
-  if (isLoading) {
-    return (
+  return (
+    <SSRSuspense fallback={<Loading/>}>
       <div className={styles.layout}>
         <div className={styles.wrapper}>
-        <Head>
-        <title>이창훈_FE_원티드</title>
-      </Head>
-          로딩 중 입니다...
+          <Head>
+            <title>이창훈_FE_원티드</title>
+          </Head>
+          <Search />
+          <ProductList product={data} />
+          <Pagination total={data.length} />
         </div>
       </div>
-    )
-  }
-  return (
-    <div className={styles.layout}>
-      <div className={styles.wrapper}>
-      <Head>
-        <title>이창훈_FE_원티드</title>
-      </Head>
-        <Search />
-        <ProductList product={data} />
-        <Pagination total={data.length} />
-      </div>
-    </div>
+    </SSRSuspense>
+
   )
 }
 
@@ -60,7 +53,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   context.query.filter ? filter = context.query.filter as string : filter
   context.query.q ? q = context.query.q as string : q
   const queryClient = new QueryClient()
-  await queryClient.prefetchQuery(["product", filter, q], () => fetchSearchProduct(filter, q),{
+  await queryClient.prefetchQuery(["product", filter, q], () => fetchSearchProduct(filter, q), {
     staleTime: Infinity
   })
   return {
