@@ -9,7 +9,7 @@ import { RouterInfo } from "../src/utils/RouterInfo"
 import { useDispatch } from "react-redux"
 import React, {useEffect } from "react"
 import { changeFilter } from "../src/redux/queryReducer"
-import Loading from "../src/components/Suspense/Loading"
+import  Loading from "../src/components/Suspense/Loading"
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -29,18 +29,21 @@ const Home = () => {
   }
   )
   if(isLoading){
-    return (
-    <Loading/> 
-    )
+    return
   }
   return (
-    <div className={styles.layout}>
-    <div className={styles.wrapper}>
-      <Search />
-      <ProductList product={data} />
-      <Pagination total={data.length} />
-    </div>
-  </div>
+      <div className={styles.layout}>
+        <div className={styles.wrapper}>
+          {isLoading ? 
+          <Loading/>
+          : 
+          <React.Fragment>
+          <Search />
+          <ProductList product={data} />
+          <Pagination total={data.length} />
+          </React.Fragment>}
+        </div>
+      </div>
   )
 }
 
