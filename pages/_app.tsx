@@ -4,6 +4,8 @@ import { DehydratedState, Hydrate, QueryClient, QueryClientProvider } from "@tan
 import { Provider } from "react-redux"
 import {store} from "../src/redux/store"
 import Head from "next/head"
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
 function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedState }>) {
   const queryClient = new QueryClient()
   return (
@@ -14,8 +16,8 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
           <title>이창훈_FE_원티드</title>
           </Head>
         <Component {...pageProps} />
+        <ReactQueryDevtools initialIsOpen={false} />
         </Provider>
-
       </Hydrate>
     </QueryClientProvider>
   )

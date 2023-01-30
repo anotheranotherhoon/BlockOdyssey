@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux"
 import React, {useEffect } from "react"
 import { changeFilter } from "../src/redux/queryReducer"
 import Loading from "../src/components/Suspense/Loading"
-import { SSRSuspense } from "../src/components/Suspense/SSRSuspense"
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -24,22 +23,24 @@ const Home = () => {
       selectedFilterName
     }))
   }, [filter, q, limit, page, dispatch, selectedFilterName])
-  const { data } = useQuery(
+  const { data, isLoading } = useQuery(
     ["product", filter, q], () => fetchSearchProduct(filter, q), {
     staleTime: Infinity
   }
   )
+  if(isLoading){
+    return (
+    <Loading/> 
+    )
+  }
   return (
-    <SSRSuspense fallback={<Loading/>}>
-      <div className={styles.layout}>
-        <div className={styles.wrapper}>
-          <Search />
-          <ProductList product={data} />
-          <Pagination total={data.length} />
-        </div>
-      </div>
-    </SSRSuspense>
-
+    <div className={styles.layout}>
+    <div className={styles.wrapper}>
+      <Search />
+      <ProductList product={data} />
+      <Pagination total={data.length} />
+    </div>
+  </div>
   )
 }
 
