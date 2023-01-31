@@ -6,7 +6,7 @@ export const usePagination = (total : number) => {
   const {router} = RouterInfo()
   const state = useSelector((state : RootState)=>state.queryReducer)
   const {page, limit, filter, q }=state
-  const numPages = Math.ceil(total / limit)
+  const totalPage = Math.ceil(total / limit)
   const handlePreviousPage = () => {
     if(page===1){
       return 
@@ -25,7 +25,7 @@ export const usePagination = (total : number) => {
     }
   }
   const handleNextPage = () => {
-    if(page===numPages){
+    if(page===totalPage){
       return 
     }
     if(filter===undefined && q===undefined){
@@ -57,7 +57,7 @@ export const usePagination = (total : number) => {
     }
   }
   return{
-    numPages,
+    totalPage,
     handlePreviousPage,
     handleNextPage,
     handleClickNumber

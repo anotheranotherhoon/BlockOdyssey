@@ -4,13 +4,13 @@ import styles from "./Pagination.module.scss"
 import type { PaginationProps } from "../../types/interfaces"
 
 const Pagination = ({ total}: PaginationProps) => {
-  const { numPages, handlePreviousPage, handleNextPage, handleClickNumber } = usePagination(total)
+  const { totalPage, handlePreviousPage, handleNextPage, handleClickNumber } = usePagination(total)
   const {page} = RouterInfo()
   
   return (
       <section className={styles.pagination_wrapper}>
         <button onClick={handlePreviousPage} disabled={page === 1}>&lt;</button>
-        {numPages && Array(numPages)
+        {totalPage && Array(totalPage)
           .fill(undefined).map((_, i) => (
             <button 
             key={i + 1} 
@@ -21,7 +21,7 @@ const Pagination = ({ total}: PaginationProps) => {
             </button>
           ))
         }
-        <button onClick={handleNextPage} disabled={page === numPages}>&gt;</button>
+        <button onClick={handleNextPage} disabled={page === totalPage}>&gt;</button>
       </section>
 
   )
