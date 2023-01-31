@@ -2,6 +2,9 @@
 ## **✨ 배포 링크**
 ### [배포링크바로가기](https://block-odyssey-lake.vercel.app/)
 
+## **📒 회고 링크**
+### [회고바로가기](https://velog.io/@anotherhoon/%EA%B8%B0%EC%97%85-%EA%B3%BC%EC%A0%9C-%ED%94%BC%EB%93%9C%EB%B0%B1-%EB%B0%8F-%ED%9A%8C%EA%B3%A0)
+
 ## Required Tasks
 - It should be a search result list.
 <p align="center">
