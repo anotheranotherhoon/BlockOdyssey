@@ -14,7 +14,6 @@ import  Loading from "../src/components/Suspense/Loading"
 const Home = () => {
   const dispatch = useDispatch()
   const { filter, q, limit, page, selectedFilterName, } = RouterInfo()
-  console.log(selectedFilterName)
   useEffect(() => {
     dispatch(changeFilter({
       page,

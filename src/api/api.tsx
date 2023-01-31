@@ -30,7 +30,6 @@ export const filterProduct = async(data : ProductType[], filter :  string, q : s
 
 export const fetchSearchProduct = async (filter : string | undefined | null , q : string | undefined | null) => {
   if(filter===undefined && q===undefined){
-    console.log(1)
     const result = await fetchProduct()
     return result
   }else if(filter===undefined && q!==undefined){
@@ -41,7 +40,6 @@ export const fetchSearchProduct = async (filter : string | undefined | null , q 
     const result = filterProduct(data, filter as string, q as string)
     return result
   }else if(filter !==undefined && q === undefined){
-    console.log(4)
     const result = await fetchProduct()
     return result
   }

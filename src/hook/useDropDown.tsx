@@ -18,7 +18,7 @@ export const useDropDown: UseDropDownParam  = (name, status, isLimit) => {
     if(target){
       setIsDropDownShow(prev => !prev);
       setSelectedName((target as HTMLButtonElement).innerHTML)
-      if((target as HTMLButtonElement).value===''){
+      if((target as HTMLButtonElement).value===""){
         setSelectedStatus(undefined)
       }else{
         setSelectedStatus((target as HTMLButtonElement).value)

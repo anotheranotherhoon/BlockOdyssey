@@ -14,7 +14,6 @@ export const querySlice = createSlice({
   initialState,
   reducers : {
     changeFilter : (state, action) => {
-      console.log(action.payload)
       state.page = action.payload.page
       state.limit = action.payload.limit
       if(action.payload.filter===""){
