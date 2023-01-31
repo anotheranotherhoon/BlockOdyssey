@@ -4,7 +4,7 @@ import {RouterInfo} from "../utils/RouterInfo"
 export const useInput = () => {
   const {q} = RouterInfo()
   const [value, setValue] = useState(
-    q==="default" ? "" : q
+    q===undefined ? "" : q
   )
   const handleInputChange = (e : React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)

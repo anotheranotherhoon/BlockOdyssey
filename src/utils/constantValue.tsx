@@ -12,7 +12,7 @@ export const FILTER = [
   {
     id : 1,
     name : "전체",
-    status : "all"
+    status : undefined
   },
   {
     id : 2,

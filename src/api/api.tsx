@@ -11,7 +11,7 @@ export const fetchProduct = async()=> {
   return productData
 }
 
-export const searchProduct = async(q : string )=> {
+export const searchProduct = async(q : string | null )=> {
   const response = await axiosInstance("/products/search",{
     params : {
       limit :100,
@@ -22,24 +22,26 @@ export const searchProduct = async(q : string )=> {
   return productData
 }
 
-export const filterProduct = async(data : ProductType[], filter :  string, q : string ) => {
-  const keyword = q.toLocaleLowerCase()
+export const filterProduct = async(data : ProductType[], filter :  string, q : string) => {
+  const keyword = q.toLowerCase()
   const result = data.filter((item : ProductType)=> (item[filter] as string).toLowerCase().includes(keyword))
   return result
 }
 
-export const fetchSearchProduct = async (filter : string , q : string) => {
-  if(filter==="all" && q==="default"){
+export const fetchSearchProduct = async (filter : string | undefined | null , q : string | undefined | null) => {
+  if(filter===undefined && q===undefined){
+    console.log(1)
     const result = await fetchProduct()
     return result
-  }else if(filter==="all" && q!=="default"){
+  }else if(filter===undefined && q!==undefined){
     const result = await searchProduct(q)
     return result
-  }else if(filter !=="all" && q !== "default"){
+  }else if(filter !==undefined && q !== undefined){
     const data = await fetchProduct()
-    const result = filterProduct(data, filter, q)
+    const result = filterProduct(data, filter as string, q as string)
     return result
-  }else if(filter !=="all" && q === "default"){
+  }else if(filter !==undefined && q === undefined){
+    console.log(4)
     const result = await fetchProduct()
     return result
   }

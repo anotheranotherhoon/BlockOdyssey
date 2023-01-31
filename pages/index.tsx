@@ -14,6 +14,7 @@ import  Loading from "../src/components/Suspense/Loading"
 const Home = () => {
   const dispatch = useDispatch()
   const { filter, q, limit, page, selectedFilterName, } = RouterInfo()
+  console.log(selectedFilterName)
   useEffect(() => {
     dispatch(changeFilter({
       page,
@@ -48,10 +49,10 @@ const Home = () => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  let filter = "all"
-  let q = "default"
-  context.query.filter ? filter = context.query.filter as string : filter
-  context.query.q ? q = context.query.q as string : q
+  let filter : string | null | undefined = null
+  let q : string | null | undefined= null
+  context.query.filter===undefined ? filter : filter = context.query.filter as string 
+  context.query.q===undefined ? q :  q = context.query.q as string 
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery(["product", filter, q], () => fetchSearchProduct(filter, q), {
     staleTime: Infinity

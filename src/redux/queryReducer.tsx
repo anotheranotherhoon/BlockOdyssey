@@ -4,9 +4,9 @@ import type {InitialStateType} from "../types/interfaces"
 let initialState : InitialStateType = {
   page : 1,
   limit : 10,
-  filter : "all",
-  q : "default",
-  selectedFilterName: null
+  filter : undefined,
+  q : undefined,
+  selectedFilterName: undefined
 }
 
 export const querySlice = createSlice({
@@ -14,10 +14,19 @@ export const querySlice = createSlice({
   initialState,
   reducers : {
     changeFilter : (state, action) => {
+      console.log(action.payload)
       state.page = action.payload.page
       state.limit = action.payload.limit
-      state.filter = action.payload.filter
-      state.q = action.payload.q
+      if(action.payload.filter===""){
+        state.filter = undefined
+      }else{
+        state.filter = action.payload.filter
+      }
+      if(action.payload.q===""){
+        state.q = undefined
+      }else{
+        state.q = action.payload.q
+      }
       state.selectedFilterName = action.payload.selectedFilterName
     }
   }

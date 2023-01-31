@@ -9,7 +9,7 @@ export const useDropDown: UseDropDownParam  = (name, status, isLimit) => {
   const state = useSelector((state : RootState)=>state.queryReducer)
   const [isDropDownShow, setIsDropDownShow] = useState(false);
   const [selectedName, setSelectedName] = useState(name)
-  const [selectedStatus, setSelectedStatus] = useState(status)
+  const [selectedStatus, setSelectedStatus] = useState<string | undefined>(status)
   const handleDropDown = () => {
     setIsDropDownShow(prev => !prev)
   }
@@ -18,7 +18,11 @@ export const useDropDown: UseDropDownParam  = (name, status, isLimit) => {
     if(target){
       setIsDropDownShow(prev => !prev);
       setSelectedName((target as HTMLButtonElement).innerHTML)
-      setSelectedStatus((target as HTMLButtonElement).value)
+      if((target as HTMLButtonElement).value===''){
+        setSelectedStatus(undefined)
+      }else{
+        setSelectedStatus((target as HTMLButtonElement).value)
+      }
       if(isLimit){
         dispatch(changeFilter({
           ...state,

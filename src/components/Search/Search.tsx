@@ -24,7 +24,18 @@ const Search = () => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    router.push(`/?filter=${filterSelectedStatus}&q=${value}&page=${1}&limit=${limitSelectedStatus}`)
+    if(filterSelectedStatus===undefined && value ===undefined){
+      router.push(`/?page=${1}&limit=${limitSelectedStatus}`)
+    }
+    else if(filterSelectedStatus===undefined && value !==undefined){
+      router.push(`/?q=${value}&page=${1}&limit=${limitSelectedStatus}`)
+    }
+    else if(filterSelectedStatus!==undefined && value !==undefined ){
+      router.push(`/?filter=${filterSelectedStatus}&q=${value}&page=${1}&limit=${limitSelectedStatus}`)
+    }
+    else if(filterSelectedStatus!==undefined && value ===undefined ){
+      router.push(`/?filter=${filterSelectedStatus}&page=${1}&limit=${limitSelectedStatus}`)
+    }
   }
 
   return (

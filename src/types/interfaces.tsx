@@ -20,13 +20,13 @@ export interface ProductProps {
 export interface DropDownType {
   id : number;
   name : string;
-  status : string;
+  status : string | undefined;
 }
 
 export interface DropDownProps {
   isDropDownShow: boolean;
-  selectedName: string | null;
-  selectedStatus: string | null;
+  selectedName: string | undefined;
+  selectedStatus: string | undefined;
   handleDropDown: () => void;
   handleCurrentIndex: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   list: DropDownType[]
@@ -38,20 +38,20 @@ export interface PaginationProps {
 
 interface UseDropDownResult {
   isDropDownShow : boolean;
-  selectedName : string | null;
-  selectedStatus : string | null;
+  selectedName : string | undefined;
+  selectedStatus : string | undefined;
   handleDropDown : ()=>void;
   handleCurrentIndex :  (e :React.MouseEvent<HTMLButtonElement, MouseEvent> )=>void;
 }
 
 export interface UseDropDownParam {
-  (name :  string |null,   status : string | null, isLimit : boolean) : UseDropDownResult
+  (name :  string |undefined,   status : string | undefined, isLimit : boolean) : UseDropDownResult
 }
 
 export interface InitialStateType {
   page : number;
   limit : number;
-  filter : string;
-  q : string;
-  selectedFilterName: string | null;
+  filter : string | undefined;
+  q : string | undefined;
+  selectedFilterName: string | undefined;
 }
