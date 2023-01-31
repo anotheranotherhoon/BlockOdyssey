@@ -5,11 +5,11 @@ import type { DropDownProps } from "../../types/interfaces"
 const DropDown = ({ isDropDownShow, selectedName, handleDropDown, handleCurrentIndex, list }: DropDownProps) => {
   return (
     <div className={styles.wrapper}>
-      <button type="button" className={styles.dropdown} onClick={handleDropDown}>
+      <button type="button" onClick={handleDropDown}>
         <span>{selectedName}</span>
       </button>
       {isDropDownShow && (
-        <ul className={styles.styleul}>
+        <ul className={styles.style_ul}>
           {
             list.map((filter) => (
               <li key={filter.id}>

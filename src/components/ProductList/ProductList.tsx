@@ -8,9 +8,9 @@ const ProductList = ({product} : ProductProps) => {
   const {limit, page} = RouterInfo()
   const offset = (page - 1) * limit
   return (
-    <div className={styles.productWrapper}>
+    <div>
       <div className={styles.length}>검색된 데이터 : {product.length}</div>
-      <div className={styles.productListBox}>
+      <div className={styles.product_list_wrapper}>
         <section className={styles.bold}>
           <div className={styles.small}>상품번호</div>
           <div>상품명</div>

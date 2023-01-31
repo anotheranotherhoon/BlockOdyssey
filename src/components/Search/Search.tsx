@@ -8,7 +8,7 @@ import { FILTER, LIMIT } from "../../utils/constantValue"
 
 const Search = () => {
   const { value, handleInputChange } = useInput()
-  const { router, filter, q, limit, page, selectedFilterName } = RouterInfo()
+  const { router, filter,  limit, selectedFilterName } = RouterInfo()
   const {
     isDropDownShow: isFilterDropDownShow,
     selectedName: filterSelectedName,
@@ -28,7 +28,7 @@ const Search = () => {
   }
 
   return (
-    <div className={styles.searchBox}>
+    <div className={styles.search_box}>
       <div className={styles.bold} id={styles.split}>상품 검색</div>
       <section>
         <div className={styles.bold}>검색</div>
