@@ -8,6 +8,9 @@
   padding: 1%;
   border-radius: 1.5rem;
   flex-direction: column;
+  height: 35vw;
+  overflow-x:hidden; 
+  overflow-y:auto; 
   section{
     display: flex;
     flex-direction: row;
